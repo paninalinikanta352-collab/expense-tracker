@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Expense Tracker</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <h1>Expense Tracker</h1>
+      <p class="sub">localStorage is the database. No server, no build step.</p>
+    </header>
+
+    <div class="board">
+      <div class="stat">
+        <span class="stat-label">This month</span>
+        <span class="stat-value" id="stat-month">₹0</span>
+      </div>
+      <div class="stat">
+        <span class="stat-label">All time</span>
+        <span class="stat-value" id="stat-total">₹0</span>
+      </div>
+      <div class="stat">
+        <span class="stat-label">Entries</span>
+        <span class="stat-value" id="stat-count">0</span>
+      </div>
+      <div class="stat">
+        <span class="stat-label">Top category (this month)</span>
+        <span class="stat-value" id="stat-top">—</span>
+      </div>
+    </div>
+
+    <div class="columns">
+      <div class="left">
+        <form id="expense-form" class="card" autocomplete="off">
+          <h2>Add expense</h2>
+
+          <label for="f-desc">What did you spend on?</label>
+          <input id="f-desc" required placeholder="e.g. Filter coffee, 2" maxlength="80" />
+
+          <label for="f-amount">Amount (₹)</label>
+          <input id="f-amount" type="number" min="0.01" step="0.01" required placeholder="120.50" />
+
+          <label for="f-category">Category</label>
+          <select id="f-category" required></select>
+
+          <label for="f-date">Date</label>
+          <input id="f-date" type="date" required />
+
+          <button type="submit" class="btn btn-primary">Add expense</button>
+        </form>
+
+        <div class="card" id="chart-card">
+          <h2>Last 6 months</h2>
+          <canvas id="chart" height="220"></canvas>
+        </div>
+      </div>
+
+      <div class="right">
+        <div class="card">
+          <h2>Expenses</h2>
+
+          <div class="filters">
+            <select id="filter-category"></select>
+            <select id="filter-month"></select>
+            <button id="clear-filters" class="btn btn-outline hidden">Clear filters</button>
+          </div>
+
+          <ul id="expense-list" class="expense-list"></ul>
+
+          <div id="empty-state" class="empty-state hidden">
+            <p></p>
+            <button id="load-demo" class="btn btn-outline">Load demo data</button>
+          </div>
+        </div>
+
+        <div class="card">
+          <h2 id="split-title">Category split</h2>
+          <div id="category-split"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
